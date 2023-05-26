@@ -54,12 +54,12 @@ removeAtTree key (Branch nodeKey nodeItem left right)
   | key < nodeKey = Branch nodeKey nodeItem (removeAtTree key left) right
   | key > nodeKey = Branch nodeKey nodeItem left (removeAtTree key right)
 
--- removeIfTree :: (Int -> Bool) -> Tree -> Tree
--- removeIfTree _ Leaf = Leaf
--- removeIfTree f (Branch nodeKey nodeItem Leaf right) = removeIfTree f right
--- removeIfTree f (Branch nodeKey nodeItem left right)
---   | f nodeKey = removeTreeBranch (Branch nodeKey nodeItem left right)
---   | otherwise = removeIfTree f left
+removeIfTree :: (Int -> Bool) -> Tree -> Tree
+removeIfTree _ Leaf = Leaf
+removeIfTree f (Branch nodeKey nodeItem Leaf right) = removeIfTree f right
+removeIfTree f (Branch nodeKey nodeItem left right)
+  | f nodeKey = removeTreeBranch (Branch nodeKey nodeItem left right)
+  | otherwise = removeIfTree f left
 
 
 removeTreeBranch :: Tree -> Tree

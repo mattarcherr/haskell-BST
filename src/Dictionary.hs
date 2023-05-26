@@ -45,8 +45,8 @@ removeAt :: Key -> Dictionary -> Dictionary
 removeAt _ EmptyDict = emptyDict
 removeAt key (DictTree a) = DictTree (removeAtTree key a)
 
--- removeIf :: (Int -> Bool) -> Dictionary -> Dictionary
--- removeIf _ EmptyDict = emptyDict
--- removeIf f (DictTree a) = DictTree (removeIfTree f a)
+removeIf :: (Int -> Bool) -> Dictionary -> Dictionary
+removeIf _ EmptyDict = emptyDict
+removeIf f (DictTree a) = DictTree (removeIfTree f a)
 
 
