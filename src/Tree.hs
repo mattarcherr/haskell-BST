@@ -2,7 +2,7 @@
 {-# OPTIONS_GHC -Wno-overlapping-patterns #-}
 {-# OPTIONS_GHC -Wno-unused-matches #-}
 {-# OPTIONS_GHC -Wno-incomplete-patterns #-}
-module Tree (Tree,emptyTree,treeFromList,lookupTree,insertTree,orderedList,removeAtTree) where
+module Tree (Tree,emptyTree,treeFromList,lookupTree,insertTree,orderedList,removeAtTree,removeIfTree) where
 import Prelude hiding (lookup)
 
 type Key = Int

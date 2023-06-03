@@ -3,6 +3,8 @@ import Prelude hiding (lookup)
 
 import Dictionary
 
+import Data.Bits
+
 insertTestData :: Dictionary
 insertTestData = dictFromList
   [
@@ -24,5 +26,8 @@ insertTestData = dictFromList
       (26,"Charles")
    ]
 
+isEven :: Int -> Bool
+isEven a = complement (testBit a 0)
+
 main :: IO()
-main = printDict insertTestData
+main = printDict (insertTestData)
