@@ -1,4 +1,4 @@
-module Dictionary (Dictionary, emptyDict, dictFromList, lookup, insert, printDict, removeAt) where
+module Dictionary (Dictionary, emptyDict, dictFromList, lookup, insert, printDict, removeAt, removeIf) where
 import Prelude hiding (lookup)
 
 import Tree

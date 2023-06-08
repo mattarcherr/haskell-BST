@@ -72,3 +72,12 @@ removeTreeBranch (Branch key item left right) = Branch nodeKey nodeItem left nod
 leftmostNode :: Tree -> ((Key,Item),Tree)
 leftmostNode (Branch key item Leaf right) = ((key,item),right)
 leftmostNode (Branch key item left _) = leftmostNode left
+
+-- ############# ROTATION ############# 
+
+leftRotation :: Tree -> Tree
+leftRotation Leaf = Leaf
+
+rightRotation :: Tree -> Tree
+rightRotation Leaf = Leaf
+
