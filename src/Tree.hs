@@ -2,7 +2,7 @@
 {-# OPTIONS_GHC -Wno-overlapping-patterns #-}
 {-# OPTIONS_GHC -Wno-unused-matches #-}
 {-# OPTIONS_GHC -Wno-incomplete-patterns #-}
-module Tree (Tree,emptyTree,treeFromList,lookupTree,insertTree,orderedList,removeAtTree,removeIfTree) where
+module Tree (Tree,emptyTree,treeFromList,lookupTree,insertTree,orderedList,removeAtTree,removeIfTree,removeIfTreeTest) where
 import Prelude hiding (lookup)
 
 type Key = Int
@@ -56,11 +56,21 @@ removeAtTree key (Branch nodeKey nodeItem left right)
 
 removeIfTree :: (Int -> Bool) -> Tree -> Tree
 removeIfTree _ Leaf = Leaf
-removeIfTree f (Branch nodeKey nodeItem Leaf right) = removeIfTree f right
-removeIfTree f (Branch nodeKey nodeItem left right)
-  | f nodeKey = removeTreeBranch (Branch nodeKey nodeItem left right)
-  | otherwise = removeIfTree f left
+removeIfTree f (Branch nodeKey nodeItem left right) = ( Branch nodeKey nodeItem left (removeIfTree f right) )
+removeIfTree f (Branch nodeKey nodeItem Leaf right) = ( Branch nodeKey nodeItem Leaf (removeIfTree f right) )
+removeIfTree f (Branch nodeKey nodeItem left Leaf) = ( Branch nodeKey nodeItem (removeIfTree f left) Leaf )
+removeIfTree f (Branch nodeKey nodeItem Leaf Leaf)
+  | f nodeKey = Leaf
+  | otherwise = Branch nodeKey nodeItem Leaf Leaf
 
+
+removeIfTreeTest :: (Int -> Bool) -> Tree -> IO()
+removeIfTreeTest f (Branch nodeKey nodeItem left right) = print "one"
+removeIfTreeTest f (Branch nodeKey nodeItem Leaf right) = print "two"
+removeIfTreeTest f (Branch nodeKey nodeItem left Leaf) = print "three"
+removeIfTreeTest f (Branch nodeKey nodeItem Leaf Leaf)
+  | f nodeKey = print nodeKey
+  | otherwise = print "false"
 
 removeTreeBranch :: Tree -> Tree
 removeTreeBranch (Branch key item Leaf Leaf) = Leaf

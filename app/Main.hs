@@ -29,8 +29,8 @@ insertTestData = dictFromList
 isEven :: Int -> Bool
 isEven a = complement (testBit a 0)
 
---main :: IO()
---main = printDict ( removeIf isEven insertTestData)
-
 main :: IO()
-main = printDict insertTestData 
+main = printDict ( removeIf isEven insertTestData)
+
+--main :: IO()
+--main = printDict insertTestData 
